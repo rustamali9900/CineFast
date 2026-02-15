@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CineFast">
         <activity
+            android:name=".Movies"
+            android:exported="false" />
+        <activity
+            android:name=".Home"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
