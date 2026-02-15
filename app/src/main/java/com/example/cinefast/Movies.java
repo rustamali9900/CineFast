@@ -24,6 +24,12 @@ public class Movies extends AppCompatActivity {
     AppCompatButton btnToday, btnTomorrow;
     String Curr_active = "today";
     MaterialButton trailer_darkNight;
+    MaterialButton trailer_inception;
+    MaterialButton trailer_interstellar;
+    MaterialButton trailer_shawshank;
+
+
+
 
 
     @Override
@@ -77,6 +83,45 @@ public class Movies extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        trailer_inception.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String query = "Inception trailer";
+                String url = "https://www.youtube.com/results?search_query=" + query;
+
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+            }
+        });
+
+
+        trailer_interstellar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String query = "Interstellar trailer";
+                String url = "https://www.youtube.com/results?search_query=" + query;
+
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+            }
+        });
+
+
+        trailer_shawshank.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String query = "The Shawshank Redemption trailer";
+                String url = "https://www.youtube.com/results?search_query=" + query;
+
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+            }
+        });
+
     }
 
     private void handleToggle(AppCompatButton active, AppCompatButton inactive) {
@@ -95,6 +140,9 @@ public class Movies extends AppCompatActivity {
         btnToday = findViewById(R.id.btnToday);
         btnTomorrow = findViewById(R.id.btnTomorrow);
         trailer_darkNight = findViewById(R.id.trailer_darkNight);
+        trailer_inception = findViewById(R.id.trailer_inception);
+        trailer_interstellar = findViewById(R.id.trailer_interstellar);
+        trailer_shawshank = findViewById(R.id.trailer_shawshank);
 
 
         handleToggle(btnToday, btnTomorrow);

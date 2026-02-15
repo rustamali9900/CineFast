@@ -16,4 +16,15 @@
 
     <string name="seats">Book Seats</string>
     <string name='trailer'>Trailer</string>
+
+    <string name='inception'>Inception</string>
+    <string name='inception_details'>Sci-Fi/Action / 140 min</string>
+
+    <string name='interstellar'>Interstellar</string>
+    <string name="interstellar_details">Sci-Fi/Adventure / 167 min</string>
+
+    <string name='shawshank'>The Shawshank Redemption</string>
+    <string name='shawshank_details'>Crime/Drama / 142 min</string>
+
+
 </resources>
