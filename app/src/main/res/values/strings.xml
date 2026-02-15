@@ -10,5 +10,10 @@
     <string name="btn_tomorrow">Tomorrow</string>
 
     <string name="status">Now Showing</string>
-    <string name="dark">Dark Night Rises</string>
+    <string name="dark">The Dark Night Rises</string>
+
+    <string name="dark_details">Action / 152 min</string>
+
+    <string name="seats">Book Seats</string>
+    <string name='trailer'>Trailer</string>
 </resources>

@@ -1,7 +1,9 @@
 package com.example.cinefast;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -15,10 +17,14 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.core.widget.TextViewCompat;
 
+import com.google.android.material.button.MaterialButton;
+
 public class Movies extends AppCompatActivity {
 
     AppCompatButton btnToday, btnTomorrow;
     String Curr_active = "today";
+    MaterialButton trailer_darkNight;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +39,7 @@ public class Movies extends AppCompatActivity {
         });
 
         init();
+
 
         btnToday.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +64,19 @@ public class Movies extends AppCompatActivity {
                 handleToggle(btnTomorrow, btnToday);
             }
         });
+
+
+        trailer_darkNight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String query = "Dark Knight trailer";
+                String url = "https://www.youtube.com/results?search_query=" + query;
+
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+            }
+        });
     }
 
     private void handleToggle(AppCompatButton active, AppCompatButton inactive) {
@@ -74,6 +94,8 @@ public class Movies extends AppCompatActivity {
     private void init() {
         btnToday = findViewById(R.id.btnToday);
         btnTomorrow = findViewById(R.id.btnTomorrow);
+        trailer_darkNight = findViewById(R.id.trailer_darkNight);
+
 
         handleToggle(btnToday, btnTomorrow);
     }

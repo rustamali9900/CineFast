@@ -6,4 +6,12 @@
     </style>
 
     <style name="Theme.CineFast" parent="Base.Theme.CineFast" />
+
+    <style name="RoundedCornersImage">
+        <item name="cornerSize">8dp</item>
+    </style>
+
+    <style name="RoundedCornersButton">
+        <item name="cornerSize">5dp</item>
+    </style>
 </resources>
