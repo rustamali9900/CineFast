@@ -4,4 +4,8 @@
     <string name="home_title">Explore now to experience the benefits </string>
     <string name="home_button">Get Started</string>
     <string name='home_desc'>Neither is there anyone who loves pain itself, who seeks it and wants to have it, simply because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure.</string>
+
+    <string name="date">Select Date</string>
+    <string name="btn_today">Today</string>
+    <string name="btn_tomorrow">Tomorrow</string>
 </resources>
