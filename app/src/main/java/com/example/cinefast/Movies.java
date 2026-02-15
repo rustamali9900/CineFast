@@ -6,12 +6,10 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
-import androidx.core.content.ContextCompat; // Added for best practice
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -28,7 +26,10 @@ public class Movies extends AppCompatActivity {
     MaterialButton trailer_interstellar;
     MaterialButton trailer_shawshank;
 
-
+    MaterialButton bookDark;
+    MaterialButton book_inception;
+    MaterialButton book_interstellar;
+    MaterialButton book_shawshank;
 
 
 
@@ -122,6 +123,52 @@ public class Movies extends AppCompatActivity {
             }
         });
 
+
+        bookDark.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(Movies.this, Seats.class);
+                intent.putExtra("movie", "Dark Knight Rises");
+                intent.putExtra("date", Curr_active);
+                startActivity(intent);
+            }
+        });
+
+        book_inception.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(Movies.this, Seats.class);
+                intent.putExtra("movie", "Inception");
+                intent.putExtra("date", Curr_active);
+                startActivity(intent);
+            }
+        });
+
+        book_interstellar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(Movies.this, Seats.class);
+                intent.putExtra("movie", "Interstellar");
+                intent.putExtra("date", Curr_active);
+                startActivity(intent);
+            }
+        });
+
+        book_shawshank.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(Movies.this, Seats.class);
+                intent.putExtra("movie", "The Shawshank Redemption");
+                intent.putExtra("date", Curr_active);
+                startActivity(intent);
+            }
+        });
+
+
     }
 
     private void handleToggle(AppCompatButton active, AppCompatButton inactive) {
@@ -144,6 +191,10 @@ public class Movies extends AppCompatActivity {
         trailer_interstellar = findViewById(R.id.trailer_interstellar);
         trailer_shawshank = findViewById(R.id.trailer_shawshank);
 
+        bookDark = findViewById(R.id.bookDark);
+        book_inception = findViewById(R.id.book_inception);
+        book_interstellar = findViewById(R.id.book_interstellar);
+        book_shawshank = findViewById(R.id.book_shawshank);
 
         handleToggle(btnToday, btnTomorrow);
     }

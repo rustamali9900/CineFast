@@ -129,6 +129,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:padding="5dp"
+                        android:id="@+id/bookDark"
                         android:gravity="center"
                         android:backgroundTint="@color/red"
                         android:textColor="@color/white"
@@ -211,6 +212,7 @@
                         android:gravity="center"
                         android:backgroundTint="@color/red"
                         android:textColor="@color/white"
+                        android:id="@+id/book_inception"
                         android:textStyle="bold"
                         app:shapeAppearanceOverlay="@style/RoundedCornersButton"
                         android:text="@string/seats" />
@@ -289,6 +291,7 @@
                         android:padding="5dp"
                         android:gravity="center"
                         android:backgroundTint="@color/red"
+                        android:id="@+id/book_interstellar"
                         android:textColor="@color/white"
                         android:textStyle="bold"
                         app:shapeAppearanceOverlay="@style/RoundedCornersButton"
@@ -369,6 +372,7 @@
                         android:gravity="center"
                         android:backgroundTint="@color/red"
                         android:textColor="@color/white"
+                        android:id="@+id/book_shawshank"
                         android:textStyle="bold"
                         app:shapeAppearanceOverlay="@style/RoundedCornersButton"
                         android:text="@string/seats" />

@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CineFast">
         <activity
+            android:name=".Seats"
+            android:exported="false" />
+        <activity
             android:name=".Movies"
             android:exported="false" />
         <activity
