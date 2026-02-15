@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         new Handler().postDelayed(() -> {
             Intent intent = new Intent(MainActivity.this, Home.class);
             startActivity(intent);
+            finish();
         }, 1000);
-        finish();
     }
 }

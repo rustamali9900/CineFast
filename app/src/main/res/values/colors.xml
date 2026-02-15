@@ -7,5 +7,7 @@
     <color name="inactive">#888888</color>
 
     <color name="movie_bg">#1F2123</color>
+    <color name='seats_info_bg'>#C4C4C4</color>
+    <color name="movie_info">#727886</color>
 
 </resources>

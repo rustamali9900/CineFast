@@ -27,4 +27,9 @@
     <string name='shawshank_details'>Crime/Drama / 142 min</string>
 
 
+    <string name="theater">Theater</string>
+    <string name='hall'>Hall</string>
+    <string name='clock'>Date</string>
+    <string name='time'>Time</string>
+
 </resources>
