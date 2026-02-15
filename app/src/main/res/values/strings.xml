@@ -8,4 +8,7 @@
     <string name="date">Select Date</string>
     <string name="btn_today">Today</string>
     <string name="btn_tomorrow">Tomorrow</string>
+
+    <string name="status">Now Showing</string>
+    <string name="dark">Dark Night Rises</string>
 </resources>

@@ -37,7 +37,6 @@ public class Home extends AppCompatActivity {
                 {
                     Intent i = new Intent(Home.this, Movies.class);
                     startActivity(i);
-                    finish();
                 }
             }
         });
