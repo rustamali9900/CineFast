@@ -32,4 +32,19 @@
     <string name='clock'>Date</string>
     <string name='time'>Time</string>
 
+    <string name='items'>Select Items</string>
+
+    <string name='menu'>Snacks and Drinks</string>
+    <string name='popcorn'>PopCorn</string>
+    <string name='pop_desc'>Large / Buffered</string>
+    <string name='nachos_desc'>With Cheese Dip</string>
+    <string name='pepsi_desc'>Large Any Flavours</string>
+    <string name='amount'>0</string>
+    <string name='nachos'>Nachos</string>
+    <string name='pepsi'>Pepsi</string>
+    <string name='add'>+</string>
+    <string name='remove'>-</string>
+
+    <string name='confirm'>Confirm</string>
+
 </resources>

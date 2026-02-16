@@ -37,9 +37,11 @@ public class Total extends AppCompatActivity {
             String date = intent.getStringExtra("date");
             String selectedRow = intent.getStringExtra("selectedRows");
             String selectedSeats = intent.getStringExtra("selectedSeats");
+            String popcornsQty = intent.getStringExtra("popcornsQty");
+            String nachosQty = intent.getStringExtra("nachosQty");
+            String pepsiQty = intent.getStringExtra("pepsiQty");
 
-
-            total.setText("Total: Rs. " + totalPrice + "name is " + movie + "date is " + date + "selected rows are " + selectedRow + "selected seats are " + selectedSeats);
+            total.setText("Total: Rs. " + totalPrice + "name is " + movie + "date is " + date + "selected rows are " + selectedRow + "selected seats are " + selectedSeats + "popcorns qty is " + popcornsQty+"nachos qty is "+nachosQty+"pepsi qty is "+pepsiQty);
 
         }
 
