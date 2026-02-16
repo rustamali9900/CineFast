@@ -31,7 +31,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Oppenheimer"
+                android:text=""
+                android:id="@+id/movie_name"
                 android:textColor="@color/white"
 
                 android:textSize="30sp"
@@ -178,7 +179,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="11:01:2025"
+                    android:id="@+id/movie_date"
+                    android:text=""
                     android:textSize="15sp"
                     android:textColor="@color/white"
                     android:layout_marginEnd="30dp"
@@ -200,7 +202,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight=".5"
             android:src="@drawable/screen"
             android:contentDescription="@string/app_name"
             android:layout_marginTop="20dp"
@@ -211,7 +213,7 @@
             android:id="@+id/theater_container"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="5"
+            android:layout_weight="6.25"
             android:orientation="vertical"
             android:gravity="center_horizontal"
             android:paddingStart="20dp"
@@ -322,19 +324,68 @@
         </LinearLayout>
 
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/seats_status"
-            android:contentDescription="@string/status"
-            android:layout_weight="0.5"
-            />
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="0dp"
+           android:layout_weight="0.5"
+           android:orientation="horizontal"
+           android:gravity="center"
+           >
+           <ImageView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:src="@drawable/notavailable"
+               android:layout_marginEnd="10dp"
+               />
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="Not Available"
+               android:textSize="15dp"
+               android:textColor="@color/white"
+               android:layout_marginEnd="15dp"
+               />
+
+
+           <ImageView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:src="@drawable/yours"
+               android:layout_marginEnd="10dp"
+               />
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="Yours"
+               android:textSize="15dp"
+               android:layout_marginEnd="15dp"
+               android:textColor="@color/white"
+               />
+
+
+           <ImageView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:src="@drawable/available"
+               android:layout_marginEnd="10dp"
+               />
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="Available"
+               android:textSize="15dp"
+               android:textColor="@color/white"
+               />
+
+
+
+       </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_weight="0.75"
+            android:layout_weight="0.5"
             android:layout_marginTop="10dp"
             android:gravity="center_horizontal"
             >
@@ -343,6 +394,7 @@
                 android:layout_height="wrap_content"
                 android:text="Book Seats"
                 android:textColor="@color/white"
+                android:id="@+id/bookSeats"
                 android:textSize="15sp"
                 android:layout_marginEnd="40dp"
                 android:backgroundTint="@color/red"/>
@@ -352,6 +404,7 @@
                 android:layout_height="wrap_content"
                 android:text="Proceed to Snacks"
                 android:textColor="@color/black"
+                android:id="@+id/snacks"
                 android:textSize="15sp"
                 android:backgroundTint="@color/white"/>
         </LinearLayout>

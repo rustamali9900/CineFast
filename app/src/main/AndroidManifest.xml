@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CineFast">
         <activity
+            android:name=".Total"
+            android:exported="false" />
+        <activity
+            android:name=".Snacks"
+            android:exported="false" />
+        <activity
             android:name=".Seats"
             android:exported="false" />
         <activity
