@@ -29,6 +29,7 @@ public class Seats extends AppCompatActivity {
 
     int TicketPrice = 100;
     int totalAmount = 0;
+    int selectedSeatCount = 0;
     int max_seats = 3;
 
     Button snacks;
@@ -55,6 +56,11 @@ public class Seats extends AppCompatActivity {
     }
 
     private void navigateData(Class<?> targetActivity) {
+        if (selectedSeatCount == 0) {
+            Toast.makeText(this, "Please select at least one seat", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         StringBuilder rowLettersBuilder = new StringBuilder();
         StringBuilder seatNumbersBuilder = new StringBuilder();
         int rowLetterOffset = 0;
@@ -157,10 +163,12 @@ public class Seats extends AppCompatActivity {
                         if (v.isSelected()) {
                             v.setSelected(false);
                             totalAmount -= TicketPrice;
+                            selectedSeatCount--;
                         } else {
-                            if (countSelectedSeats() < max_seats) {
+                            if (selectedSeatCount < max_seats) {
                                 v.setSelected(true);
                                 totalAmount += TicketPrice;
+                                selectedSeatCount++;
                             } else {
                                 Toast.makeText(Seats.this, "Maximum 3 seats allowed", Toast.LENGTH_SHORT).show();
                             }
@@ -169,23 +177,6 @@ public class Seats extends AppCompatActivity {
                 });
             }
         }
-    }
-
-    private int countSelectedSeats() {
-        int count = 0;
-        for (int i = 0; i < theater_container.getChildCount(); i++) {
-            View rowView = theater_container.getChildAt(i);
-            if (rowView instanceof LinearLayout) {
-                LinearLayout row = (LinearLayout) rowView;
-                for (int j = 0; j < row.getChildCount(); j++) {
-                    View seat = row.getChildAt(j);
-                    if (seat.isSelected()) {
-                        count++;
-                    }
-                }
-            }
-        }
-        return count;
     }
 
     private void init() {

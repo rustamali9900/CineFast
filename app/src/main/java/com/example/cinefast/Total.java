@@ -2,6 +2,7 @@ package com.example.cinefast;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -10,11 +11,17 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.imageview.ShapeableImageView;
+
 public class Total extends AppCompatActivity {
 
-    int totalPrice, popcornPrice, nachosPrice, pepsiPrice, caramel_popcornPrice,popcornsQty, nachosQty, pepsiQty, caramel_popcornQty;
+    int totalPrice,image, popcornPrice, nachosPrice, pepsiPrice, caramel_popcornPrice,popcornsQty, nachosQty, pepsiQty, caramel_popcornQty;
 
     String movie, date, selectedRow, selectedSeats;
+
+
+    ShapeableImageView movie_poster;
+    TextView checkout_movie;
 
 
     @Override
@@ -28,7 +35,10 @@ public class Total extends AppCompatActivity {
             return insets;
         });
 
+        init();
         handleIntent();
+
+        handleData();
 
     }
 
@@ -43,6 +53,10 @@ public class Total extends AppCompatActivity {
 
             movie = intent.getStringExtra("movie");
             date = intent.getStringExtra("date");
+
+            String imageStr = intent.getStringExtra("image");
+            if(imageStr != null) image = Integer.parseInt(imageStr);
+
 
             selectedRow = intent.getStringExtra("selectedRows");
             selectedSeats = intent.getStringExtra("selectedSeats");
@@ -75,4 +89,24 @@ public class Total extends AppCompatActivity {
         }
 
     }
+
+    private void handleData()
+    {
+        movie_poster.setVisibility(View.VISIBLE);
+        checkout_movie.setVisibility(View.VISIBLE);
+
+        movie_poster.setImageResource(image);
+        checkout_movie.setText(movie);
+    }
+
+
+    private void init()
+    {
+        movie_poster = findViewById(R.id.movie_poster);
+        checkout_movie = findViewById(R.id.checkout_movie);
+
+        movie_poster.setVisibility(View.GONE);
+        checkout_movie.setVisibility(View.GONE);
+    }
+
 }
