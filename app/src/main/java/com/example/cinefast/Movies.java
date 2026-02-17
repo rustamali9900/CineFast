@@ -127,10 +127,13 @@ public class Movies extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                int resId = (R.drawable.darknight);
+                String resStr = String.valueOf(resId);
+
                 Intent intent = new Intent(Movies.this, Seats.class);
                 intent.putExtra("movie", "Dark Knight Rises");
                 intent.putExtra("date", Curr_active);
-                intent.putExtra("image",R.drawable.darknight);
+                intent.putExtra("image",resStr);
                 startActivity(intent);
             }
         });
@@ -139,10 +142,13 @@ public class Movies extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                int resId = (R.drawable.inception);
+                String resStr = String.valueOf(resId);
+
                 Intent intent = new Intent(Movies.this, Seats.class);
                 intent.putExtra("movie", "Inception");
                 intent.putExtra("date", Curr_active);
-                intent.putExtra("image",R.drawable.inception);
+                intent.putExtra("image",resStr);
                 startActivity(intent);
             }
         });
@@ -151,10 +157,13 @@ public class Movies extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                int resId = (R.drawable.interstellar);
+                String resStr = String.valueOf(resId);
+
                 Intent intent = new Intent(Movies.this, Seats.class);
                 intent.putExtra("movie", "Interstellar");
                 intent.putExtra("date", Curr_active);
-                intent.putExtra("image",R.drawable.interstellar);
+                intent.putExtra("image",resStr);
                 startActivity(intent);
             }
         });
@@ -162,11 +171,13 @@ public class Movies extends AppCompatActivity {
         book_shawshank.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int resId = (R.drawable.shawshank);
+                String resStr = String.valueOf(resId);
 
                 Intent intent = new Intent(Movies.this, Seats.class);
                 intent.putExtra("movie", "The Shawshank Redemption");
                 intent.putExtra("date", Curr_active);
-                intent.putExtra("image",R.drawable.shawshank);
+                intent.putExtra("image",resStr);
                 startActivity(intent);
             }
         });

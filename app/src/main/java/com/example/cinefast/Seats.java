@@ -35,7 +35,7 @@ public class Seats extends AppCompatActivity {
     Button snacks;
     Button bookSeats;
 
-    int image;
+    String image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,7 +122,7 @@ public class Seats extends AppCompatActivity {
         if (intent != null) {
             movieName = intent.getStringExtra("movie");
             date = intent.getStringExtra("date");
-            image = intent.getIntExtra("image", 0);
+            image = intent.getStringExtra("image");
         }
         movie_name.setVisibility(View.VISIBLE);
         movie_name.setText(movieName);

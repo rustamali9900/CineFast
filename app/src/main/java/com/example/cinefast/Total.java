@@ -13,15 +13,25 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.imageview.ShapeableImageView;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
 public class Total extends AppCompatActivity {
 
-    int totalPrice,image, popcornPrice, nachosPrice, pepsiPrice, caramel_popcornPrice,popcornsQty, nachosQty, pepsiQty, caramel_popcornQty;
+    int image, popcornPrice, nachosPrice, pepsiPrice, caramel_popcornPrice,popcornsQty, nachosQty, pepsiQty, caramel_popcornQty;
 
-    String movie, date, selectedRow, selectedSeats;
+    String movie, date, selectedRow, selectedSeats,totalPrice;
 
 
     ShapeableImageView movie_poster;
-    TextView checkout_movie;
+    TextView checkout_movie, checkout_date,checkout_bill;
+
+    TextView movie1_seatInfo, movie2_seatInfo, movie3_seatInfo;
+
+    TextView seat1_price, seat2_price, seat3_price;
+
+
 
 
     @Override
@@ -47,9 +57,7 @@ public class Total extends AppCompatActivity {
         Intent intent = getIntent();
 
         if (intent != null) {
-            String totalPriceStr = intent.getStringExtra("total");
-            if(totalPriceStr != null) totalPrice = Integer.parseInt(totalPriceStr);
-
+            totalPrice = intent.getStringExtra("total");
 
             movie = intent.getStringExtra("movie");
             date = intent.getStringExtra("date");
@@ -94,9 +102,69 @@ public class Total extends AppCompatActivity {
     {
         movie_poster.setVisibility(View.VISIBLE);
         checkout_movie.setVisibility(View.VISIBLE);
+        checkout_bill.setVisibility(View.VISIBLE);
 
         movie_poster.setImageResource(image);
         checkout_movie.setText(movie);
+
+        checkout_bill.setText(totalPrice+"$");
+
+        handleDate();
+
+        handleSeats();
+
+        handleSnacks();
+
+    }
+
+
+    private void handleSeats() {
+
+            String[] rowArray = selectedRow.trim().split("\\s+");
+            String[] seatArray = selectedSeats.trim().split("\\s+");
+            String seatPrice = "100$";
+
+            for (int i = 0; i < rowArray.length; i++) {
+                String combinedInfo = "Row " + rowArray[i] + ", Seat " + seatArray[i];
+
+                if (i == 0) {
+                    movie1_seatInfo.setVisibility(View.VISIBLE);
+                    movie1_seatInfo.setText(combinedInfo);
+                    seat1_price.setText(seatPrice);
+                } else if (i == 1) {
+                    movie2_seatInfo.setVisibility(View.VISIBLE);
+                    movie2_seatInfo.setText(combinedInfo);
+                    seat2_price.setText(seatPrice);
+                } else if (i == 2) {
+                    movie3_seatInfo.setVisibility(View.VISIBLE);
+                    movie3_seatInfo.setText(combinedInfo);
+                    seat3_price.setText(seatPrice);
+                }
+            }
+    }
+
+    private void handleSnacks()
+    {
+    
+    }
+
+
+    private void handleDate()
+    {
+        checkout_date.setVisibility(View.VISIBLE);
+
+        SimpleDateFormat formatter = new SimpleDateFormat("dd,MM,yyyy", Locale.getDefault());
+        Calendar calendar = Calendar.getInstance();
+        String todayStr = formatter.format(calendar.getTime());
+
+
+        if (date != null && date.equals("tomorrow")) {
+            calendar.add(Calendar.DAY_OF_YEAR, 1);
+            String tomorrowStr = formatter.format(calendar.getTime());
+            checkout_date.setText(tomorrowStr);
+        } else {
+            checkout_date.setText(todayStr);
+        }
     }
 
 
@@ -104,9 +172,31 @@ public class Total extends AppCompatActivity {
     {
         movie_poster = findViewById(R.id.movie_poster);
         checkout_movie = findViewById(R.id.checkout_movie);
+        checkout_date = findViewById(R.id.checkout_date);
+        checkout_bill = findViewById(R.id.checkout_bill);
+
+        movie1_seatInfo = findViewById(R.id.movie1_seatInfo);
+        movie2_seatInfo = findViewById(R.id.movie2_seatInfo);
+        movie3_seatInfo = findViewById(R.id.movie3_seatInfo);
+
+        seat1_price = findViewById(R.id.seat1_price);
+        seat2_price = findViewById(R.id.seat2_price);
+        seat3_price = findViewById(R.id.seat3_price);
+
+
 
         movie_poster.setVisibility(View.GONE);
         checkout_movie.setVisibility(View.GONE);
+        movie1_seatInfo.setVisibility(View.GONE);
+        movie2_seatInfo.setVisibility(View.GONE);
+        movie3_seatInfo.setVisibility(View.GONE);
+
+        checkout_date.setVisibility(View.GONE);
+        checkout_bill.setVisibility(View.GONE);
+
+        seat1_price.setVisibility(View.GONE);
+        seat2_price.setVisibility(View.GONE);
+        seat3_price.setVisibility(View.GONE);
     }
 
 }
