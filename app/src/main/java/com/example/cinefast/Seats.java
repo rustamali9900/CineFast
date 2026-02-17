@@ -15,8 +15,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class Seats extends AppCompatActivity {
 
@@ -26,16 +27,12 @@ public class Seats extends AppCompatActivity {
     TextView movie_name;
     TextView movie_date;
 
-    String selectedRow;
-    String selectedSeat;
-
     int TicketPrice = 100;
     int totalAmount = 0;
+    int max_seats = 3;
 
     Button snacks;
-
     Button bookSeats;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,15 +46,11 @@ public class Seats extends AppCompatActivity {
         });
 
         init();
-
         handleClickListeners(theater_container);
-
         handleIntent();
         handleBookSeats();
         handleSnacks();
-
     }
-
 
     private void handleSnacks() {
         snacks.setOnClickListener(new View.OnClickListener() {
@@ -100,8 +93,8 @@ public class Seats extends AppCompatActivity {
             }
         });
     }
-    private void handleBookSeats()
-    {
+
+    private void handleBookSeats() {
         bookSeats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -138,16 +131,14 @@ public class Seats extends AppCompatActivity {
                 intent.putExtra("date", date);
 
                 intent.putExtra("selectedRows", rowLettersBuilder.toString().trim());
-                intent.putExtra("selectedSeats",seatNumbersBuilder.toString().trim());
+                intent.putExtra("selectedSeats", seatNumbersBuilder.toString().trim());
 
                 startActivity(intent);
             }
         });
     }
 
-
-    private void handleIntent()
-    {
+    private void handleIntent() {
         Intent intent = getIntent();
 
         if (intent != null) {
@@ -158,31 +149,27 @@ public class Seats extends AppCompatActivity {
         movie_name.setText(movieName);
 
         movie_date.setVisibility(View.VISIBLE);
-        LocalDate today = LocalDate.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd,MM,yyyy");
-        String todayStr = today.format(formatter);
 
-        if(date.equals("tomorrow"))
-        {
-            LocalDate tomorrow = today.plusDays(1);
-            String tomorrowStr = tomorrow.format(formatter);
+        SimpleDateFormat formatter = new SimpleDateFormat("dd,MM,yyyy", Locale.getDefault());
+        Calendar calendar = Calendar.getInstance();
+        String todayStr = formatter.format(calendar.getTime());
+
+        if (date != null && date.equals("tomorrow")) {
+            calendar.add(Calendar.DAY_OF_YEAR, 1);
+            String tomorrowStr = formatter.format(calendar.getTime());
             movie_date.setText(tomorrowStr);
-        }
-        else {
+        } else {
             movie_date.setText(todayStr);
         }
     }
 
-    private void handleClickListeners(ViewGroup parent) {
-
+    private void handleClickListeners(LinearLayout parent) {
         for (int i = 0; i < parent.getChildCount(); i++) {
             View child = parent.getChildAt(i);
 
-            if (child instanceof ViewGroup) {
-                handleClickListeners((ViewGroup) child);
-            }
-
-            else if (child.getTag() != null) {
+            if (child instanceof LinearLayout) {
+                handleClickListeners((LinearLayout) child);
+            } else if (child.getTag() != null) {
 
                 child.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -198,8 +185,12 @@ public class Seats extends AppCompatActivity {
                             v.setSelected(false);
                             totalAmount -= TicketPrice;
                         } else {
-                            v.setSelected(true);
-                            totalAmount += TicketPrice;
+                            if (countSelectedSeats() < max_seats) {
+                                v.setSelected(true);
+                                totalAmount += TicketPrice;
+                            } else {
+                                Toast.makeText(Seats.this, "Maximum 3 seats allowed", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }
                 });
@@ -207,14 +198,29 @@ public class Seats extends AppCompatActivity {
         }
     }
 
-    private void init()
-    {
+    private int countSelectedSeats() {
+        int count = 0;
+        for (int i = 0; i < theater_container.getChildCount(); i++) {
+            View rowView = theater_container.getChildAt(i);
+            if (rowView instanceof LinearLayout) {
+                LinearLayout row = (LinearLayout) rowView;
+                for (int j = 0; j < row.getChildCount(); j++) {
+                    View seat = row.getChildAt(j);
+                    if (seat.isSelected()) {
+                        count++;
+                    }
+                }
+            }
+        }
+        return count;
+    }
+
+    private void init() {
         theater_container = findViewById(R.id.theater_container);
         movie_name = findViewById(R.id.movie_name);
         movie_date = findViewById(R.id.movie_date);
 
-        bookSeats= findViewById(R.id.bookSeats);
-
+        bookSeats = findViewById(R.id.bookSeats);
         snacks = findViewById(R.id.snacks);
 
         movie_name.setVisibility(View.GONE);

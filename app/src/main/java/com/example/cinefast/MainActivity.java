@@ -43,8 +43,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void playAnimation()
     {
-        logo.setTranslationY(500f);
-        logo.animate().translationY(0f).setDuration(1000).start();
+        Animation slideUp = AnimationUtils.loadAnimation(this, R.anim.slide_up);
+        logo.startAnimation(slideUp);
     }
     private void moveToHome()
     {
