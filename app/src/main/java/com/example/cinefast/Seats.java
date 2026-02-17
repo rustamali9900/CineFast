@@ -37,6 +37,8 @@ public class Seats extends AppCompatActivity {
 
     String image;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
