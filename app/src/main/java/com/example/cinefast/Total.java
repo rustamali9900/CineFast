@@ -12,7 +12,10 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class Total extends AppCompatActivity {
 
-    String totalPrice;
+    int totalPrice, popcornPrice, nachosPrice, pepsiPrice, caramel_popcornPrice,popcornsQty, nachosQty, pepsiQty, caramel_popcornQty;
+
+    String movie, date, selectedRow, selectedSeats;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,22 +37,40 @@ public class Total extends AppCompatActivity {
         Intent intent = getIntent();
 
         if (intent != null) {
-            totalPrice = intent.getStringExtra("total");
-            String movie = intent.getStringExtra("movie");
-            String date = intent.getStringExtra("date");
+            String totalPriceStr = intent.getStringExtra("total");
+            if(totalPriceStr != null) totalPrice = Integer.parseInt(totalPriceStr);
 
-            String selectedRow = intent.getStringExtra("selectedRows");
-            String selectedSeats = intent.getStringExtra("selectedSeats");
 
-            String popcornsQty = intent.getStringExtra("popcornsQty");
-            String nachosQty = intent.getStringExtra("nachosQty");
-            String pepsiQty = intent.getStringExtra("pepsiQty");
-            String caramel_popcornQty = intent.getStringExtra("caramel_popcornQty");
+            movie = intent.getStringExtra("movie");
+            date = intent.getStringExtra("date");
 
-            String popcornsPrice = intent.getStringExtra("popcorn_price");
-            String nachosPrice = intent.getStringExtra("nachos_price");
-            String pepsiPrice = intent.getStringExtra("pepsi_price");
-            String caramel_popcornPrice = intent.getStringExtra("caramel_popcorn_price");
+            selectedRow = intent.getStringExtra("selectedRows");
+            selectedSeats = intent.getStringExtra("selectedSeats");
+
+            String popcornsQtyStr = intent.getStringExtra("popcornsQty");
+            if(popcornsQtyStr != null) popcornsQty = Integer.parseInt(popcornsQtyStr);
+
+            String nachosQtyStr = intent.getStringExtra("nachosQty");
+            if(nachosQtyStr != null) nachosQty = Integer.parseInt(nachosQtyStr);
+
+            String pepsiQtyStr = intent.getStringExtra("pepsiQty");
+            if(pepsiQtyStr != null) pepsiQty = Integer.parseInt(pepsiQtyStr);
+
+            String caramel_popcornQtyStr = intent.getStringExtra("caramel_popcornQty");
+            if(caramel_popcornQtyStr != null) caramel_popcornQty = Integer.parseInt(caramel_popcornQtyStr);
+
+
+            String popcornsPriceStr = intent.getStringExtra("popcorn_price");
+            if(popcornsPriceStr != null) popcornPrice = Integer.parseInt(popcornsPriceStr);
+
+            String nachosPriceStr = intent.getStringExtra("nachos_price");
+            if(nachosPriceStr != null) nachosPrice = Integer.parseInt(nachosPriceStr);
+
+            String pepsiPriceStr = intent.getStringExtra("pepsi_price");
+            if(pepsiPriceStr!=null) pepsiPrice = Integer.parseInt(pepsiPriceStr);
+
+            String caramel_popcornPriceStr = intent.getStringExtra("caramel_popcorn_price");
+            if(caramel_popcornPriceStr!=null) caramel_popcornPrice = Integer.parseInt(caramel_popcornPriceStr);
 
         }
 

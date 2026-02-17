@@ -92,6 +92,7 @@
                 android:layout_height="150dp"
                 android:layout_marginStart="15dp"
                 android:src="@drawable/darknight"
+                android:id="@+id/darkNight_img"
                 android:contentDescription="@string/dark"
                 app:shapeAppearanceOverlay="@style/RoundedCornersImage" />
 
@@ -172,6 +173,7 @@
                 android:layout_height="150dp"
                 android:layout_marginStart="15dp"
                 android:src="@drawable/inception"
+                android:id="@+id/inception_img"
                 android:contentDescription="@string/inception"
                 app:shapeAppearanceOverlay="@style/RoundedCornersImage" />
 
@@ -252,6 +254,7 @@
                 android:layout_height="150dp"
                 android:layout_marginStart="15dp"
                 android:src="@drawable/interstellar"
+                android:id="@+id/interstellar_img"
                 android:contentDescription="@string/interstellar"
                 app:shapeAppearanceOverlay="@style/RoundedCornersImage" />
 
@@ -333,6 +336,7 @@
                 android:layout_height="150dp"
                 android:layout_marginStart="15dp"
                 android:src="@drawable/shawshank"
+                android:id="@+id/shawshank_img"
                 android:contentDescription="@string/shawshank"
                 app:shapeAppearanceOverlay="@style/RoundedCornersImage" />
 

@@ -18,7 +18,7 @@ public class Snacks extends AppCompatActivity {
 
     MaterialButton add_popcorn, remove_popcorn, add_nachos, remove_nachos, add_pepsi, remove_pepsi, add_caramel_popcorn, remove_caramel_popcorn;
     TextView popcorn_quantity, nachos_quantity, pepsi_quantity, caramel_popcorn_quantity;
-    String movie, date, selectedRow, selectedSeats;
+    String movie, date, selectedRow, selectedSeats,image;
     int seatTotalPrice = 0;
     int popcornCount = 0;
     int nachosCount = 0;
@@ -102,6 +102,7 @@ public class Snacks extends AppCompatActivity {
                 Intent i = new Intent(Snacks.this, Total.class);
                 i.putExtra("movie", movie);
                 i.putExtra("date", date);
+                i.putExtra("image",image);
                 i.putExtra("selectedRows", selectedRow);
                 i.putExtra("selectedSeats", selectedSeats);
                 i.putExtra("total", String.valueOf(seatTotalPrice + snackTotal));
@@ -136,6 +137,7 @@ public class Snacks extends AppCompatActivity {
             date = intent.getStringExtra("date");
             selectedRow = intent.getStringExtra("selectedRows");
             selectedSeats = intent.getStringExtra("selectedSeats");
+            image = intent.getStringExtra("image");
 
             String priceStr = intent.getStringExtra("total");
             if (priceStr != null) {

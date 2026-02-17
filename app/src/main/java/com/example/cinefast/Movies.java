@@ -16,6 +16,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.core.widget.TextViewCompat;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.imageview.ShapeableImageView;
 
 public class Movies extends AppCompatActivity {
 
@@ -30,8 +31,6 @@ public class Movies extends AppCompatActivity {
     MaterialButton book_inception;
     MaterialButton book_interstellar;
     MaterialButton book_shawshank;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,6 +130,7 @@ public class Movies extends AppCompatActivity {
                 Intent intent = new Intent(Movies.this, Seats.class);
                 intent.putExtra("movie", "Dark Knight Rises");
                 intent.putExtra("date", Curr_active);
+                intent.putExtra("image",R.drawable.darknight);
                 startActivity(intent);
             }
         });
@@ -142,6 +142,7 @@ public class Movies extends AppCompatActivity {
                 Intent intent = new Intent(Movies.this, Seats.class);
                 intent.putExtra("movie", "Inception");
                 intent.putExtra("date", Curr_active);
+                intent.putExtra("image",R.drawable.inception);
                 startActivity(intent);
             }
         });
@@ -153,6 +154,7 @@ public class Movies extends AppCompatActivity {
                 Intent intent = new Intent(Movies.this, Seats.class);
                 intent.putExtra("movie", "Interstellar");
                 intent.putExtra("date", Curr_active);
+                intent.putExtra("image",R.drawable.interstellar);
                 startActivity(intent);
             }
         });
@@ -164,6 +166,7 @@ public class Movies extends AppCompatActivity {
                 Intent intent = new Intent(Movies.this, Seats.class);
                 intent.putExtra("movie", "The Shawshank Redemption");
                 intent.putExtra("date", Curr_active);
+                intent.putExtra("image",R.drawable.shawshank);
                 startActivity(intent);
             }
         });

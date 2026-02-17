@@ -47,6 +47,8 @@
     <string name='add'>+</string>
     <string name='remove'>-</string>
 
+    <string name='book'>Booking Details</string>
+
     <string name='confirm'>Confirm</string>
 
 </resources>

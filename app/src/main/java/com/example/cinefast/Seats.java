@@ -34,6 +34,8 @@ public class Seats extends AppCompatActivity {
     Button snacks;
     Button bookSeats;
 
+    int image;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,44 +54,49 @@ public class Seats extends AppCompatActivity {
         handleSnacks();
     }
 
+    private void navigateData(Class<?> targetActivity) {
+        StringBuilder rowLettersBuilder = new StringBuilder();
+        StringBuilder seatNumbersBuilder = new StringBuilder();
+        int rowLetterOffset = 0;
+
+        for (int i = 0; i < theater_container.getChildCount(); i++) {
+            View rowView = theater_container.getChildAt(i);
+
+            if (rowView instanceof LinearLayout) {
+                LinearLayout row = (LinearLayout) rowView;
+                char rowLetter = (char) ('A' + rowLetterOffset);
+                rowLetterOffset++;
+
+                int seatNum = 1;
+                for (int j = 0; j < row.getChildCount(); j++) {
+                    View seat = row.getChildAt(j);
+                    if (seat.getTag() != null) {
+                        if (seat.isSelected()) {
+                            rowLettersBuilder.append(rowLetter).append(" ");
+                            seatNumbersBuilder.append(seatNum).append(" ");
+                        }
+                        seatNum++;
+                    }
+                }
+            }
+        }
+
+        Intent intent = new Intent(Seats.this, targetActivity);
+        intent.putExtra("movie", movieName);
+        intent.putExtra("date", date);
+        intent.putExtra("total", String.valueOf(totalAmount));
+        intent.putExtra("selectedRows", rowLettersBuilder.toString().trim());
+        intent.putExtra("selectedSeats", seatNumbersBuilder.toString().trim());
+        intent.putExtra("image", image);
+
+        startActivity(intent);
+    }
+
     private void handleSnacks() {
         snacks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                StringBuilder rowLettersBuilder = new StringBuilder();
-                StringBuilder seatNumbersBuilder = new StringBuilder();
-                int rowLetterOffset = 0;
-
-                for (int i = 0; i < theater_container.getChildCount(); i++) {
-                    View rowView = theater_container.getChildAt(i);
-
-                    if (rowView instanceof LinearLayout) {
-                        LinearLayout row = (LinearLayout) rowView;
-                        char rowLetter = (char) ('A' + rowLetterOffset);
-                        rowLetterOffset++;
-
-                        int seatNum = 1;
-                        for (int j = 0; j < row.getChildCount(); j++) {
-                            View seat = row.getChildAt(j);
-                            if (seat.getTag() != null) {
-                                if (seat.isSelected()) {
-                                    rowLettersBuilder.append(rowLetter).append(" ");
-                                    seatNumbersBuilder.append(seatNum).append(" ");
-                                }
-                                seatNum++;
-                            }
-                        }
-                    }
-                }
-
-                Intent intent = new Intent(Seats.this, Snacks.class);
-                intent.putExtra("movie", movieName);
-                intent.putExtra("date", date);
-                intent.putExtra("total", String.valueOf(totalAmount));
-                intent.putExtra("selectedRows", rowLettersBuilder.toString().trim());
-                intent.putExtra("selectedSeats", seatNumbersBuilder.toString().trim());
-
-                startActivity(intent);
+                navigateData(Snacks.class);
             }
         });
     }
@@ -98,42 +105,7 @@ public class Seats extends AppCompatActivity {
         bookSeats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                StringBuilder rowLettersBuilder = new StringBuilder();
-                StringBuilder seatNumbersBuilder = new StringBuilder();
-                int rowLetterOffset = 0;
-
-                for (int i = 0; i < theater_container.getChildCount(); i++) {
-                    View rowView = theater_container.getChildAt(i);
-
-                    if (rowView instanceof LinearLayout) {
-                        LinearLayout row = (LinearLayout) rowView;
-                        char rowLetter = (char) ('A' + rowLetterOffset);
-                        rowLetterOffset++;
-
-                        int seatNum = 1;
-                        for (int j = 0; j < row.getChildCount(); j++) {
-                            View seat = row.getChildAt(j);
-
-                            if (seat.getTag() != null) {
-                                if (seat.isSelected()) {
-                                    rowLettersBuilder.append(rowLetter).append(" ");
-                                    seatNumbersBuilder.append(seatNum).append(" ");
-                                }
-                                seatNum++;
-                            }
-                        }
-                    }
-                }
-
-                Intent intent = new Intent(Seats.this, Total.class);
-                intent.putExtra("total", String.valueOf(totalAmount));
-                intent.putExtra("movie", movieName);
-                intent.putExtra("date", date);
-
-                intent.putExtra("selectedRows", rowLettersBuilder.toString().trim());
-                intent.putExtra("selectedSeats", seatNumbersBuilder.toString().trim());
-
-                startActivity(intent);
+                navigateData(Total.class);
             }
         });
     }
@@ -144,6 +116,7 @@ public class Seats extends AppCompatActivity {
         if (intent != null) {
             movieName = intent.getStringExtra("movie");
             date = intent.getStringExtra("date");
+            image = intent.getIntExtra("image", 0);
         }
         movie_name.setVisibility(View.VISIBLE);
         movie_name.setText(movieName);
