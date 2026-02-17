@@ -89,7 +89,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/theater"
                     android:textColor="@color/movie_info"
-                    android:textSize="13dp"
+                    android:textSize="13sp"
                     android:layout_marginEnd="45dp"/>
 
                 <ImageView
@@ -107,7 +107,7 @@
                     android:text="@string/hall"
                     android:textColor="@color/movie_info"
                     android:layout_marginEnd="35dp"
-                    android:textSize="13dp"/>
+                    android:textSize="13sp"/>
 
 
                 <ImageView
@@ -125,7 +125,7 @@
                     android:text="@string/clock"
                     android:textColor="@color/movie_info"
                     android:layout_marginEnd="35dp"
-                    android:textSize="13dp"/>
+                    android:textSize="13sp"/>
 
 
                 <ImageView
@@ -142,7 +142,7 @@
                     android:text="@string/time"
                     android:textColor="@color/movie_info"
                     android:layout_marginEnd="18dp"
-                    android:textSize="13dp"/>
+                    android:textSize="13sp"/>
 
             </LinearLayout>
 
@@ -200,7 +200,7 @@
         </LinearLayout>
 
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight=".5"
             android:src="@drawable/screen"
@@ -218,8 +218,6 @@
             android:gravity="center_horizontal"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
             tools:context=".Seats">
 
             <LinearLayout android:layout_width="match_parent" android:layout_height="40dp" android:orientation="horizontal" android:weightSum="7" android:layout_marginBottom="8dp">

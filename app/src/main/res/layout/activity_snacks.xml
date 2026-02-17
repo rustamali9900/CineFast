@@ -290,10 +290,102 @@
             </LinearLayout>
         </LinearLayout>
 
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:orientation="horizontal"
+            android:background="@drawable/rounded_corners">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="100dp"
+                android:layout_height="150dp"
+                android:layout_marginStart="15dp"
+                android:src="@drawable/caramel_popcorn"
+                android:contentDescription="@string/caramel"
+                android:scaleType="centerCrop"
+                app:shapeAppearanceOverlay="@style/RoundedCornersImage" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginStart="15dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/caramel"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pop_desc"
+                    android:textColor="@color/gray"
+                    android:textSize="14sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="20dp">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/white"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:id="@+id/remove_caramel_popcorn"
+                        app:shapeAppearanceOverlay="@style/RoundedCornersButton"
+                        android:text="@string/remove" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:text="@string/amount"
+                        android:id="@+id/caramel_popcorn_quantity"
+                        android:textColor="@color/white"
+                        android:textSize="25sp"
+                        android:textStyle="bold"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/red"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:id="@+id/add_caramel_popcorn"
+                        app:shapeAppearanceOverlay="@style/RoundedCornersButton"
+                        android:text="@string/add" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="40dp"
             android:gravity="center"
             >
 
@@ -308,10 +400,11 @@
                 android:id="@+id/onSubmit"
                 android:paddingBottom="5dp"
                 android:text="@string/confirm"
+                android:textStyle="normal"
                 app:shapeAppearanceOverlay="@style/RoundedCornersImage"
                 android:backgroundTint="@color/red"
                 android:textColor="@color/white"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 />
         </LinearLayout>
 
