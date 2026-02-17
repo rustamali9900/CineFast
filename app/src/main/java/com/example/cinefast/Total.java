@@ -41,8 +41,6 @@ public class Total extends AppCompatActivity {
             String nachosQty = intent.getStringExtra("nachosQty");
             String pepsiQty = intent.getStringExtra("pepsiQty");
 
-            total.setText("Total: Rs. " + totalPrice + "name is " + movie + "date is " + date + "selected rows are " + selectedRow + "selected seats are " + selectedSeats + "popcorns qty is " + popcornsQty+"nachos qty is "+nachosQty+"pepsi qty is "+pepsiQty);
-
         }
 
     }
