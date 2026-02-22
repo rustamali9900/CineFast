@@ -16,7 +16,6 @@ import androidx.core.view.WindowInsetsCompat;
 public class MainActivity extends AppCompatActivity {
 
     ImageView logo;
-    Animation translate;
 
 
     @Override
