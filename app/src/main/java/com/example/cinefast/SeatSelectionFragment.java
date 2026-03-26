@@ -38,7 +38,6 @@ public class SeatSelectionFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // This links to the fragment_seat_selection.xml file you just created!
         return inflater.inflate(R.layout.fragment_seat_selection, container, false);
     }
 
@@ -49,7 +48,7 @@ public class SeatSelectionFragment extends Fragment {
         init(view);
         handleBundle();
 
-        // This checks which tab the user came from and changes the screen's behavior
+        // checks which tab the user came from and changes the screen's behavior
         if (category != null && category.equals("Coming Soon")) {
             setupForComingSoon();
         } else {
@@ -75,10 +74,8 @@ public class SeatSelectionFragment extends Fragment {
     }
 
     private void setupForNowShowing() {
-        // 1. Enable seats
         handleClickListeners(theater_container, true);
 
-        // 2. Setup normal buttons
         snacks.setText("Proceed to Snacks");
         bookSeats.setText("Book Seats");
 
@@ -89,25 +86,20 @@ public class SeatSelectionFragment extends Fragment {
                 Toast.makeText(requireContext(), "Please select at least one seat", Toast.LENGTH_SHORT).show();
                 return;
             }
-            // Assignment Requirement: Show Toast when booking is confirmed
             Toast.makeText(requireContext(), "Booking Confirmed!", Toast.LENGTH_SHORT).show();
             navigateData(Total.class);
         });
     }
 
     private void setupForComingSoon() {
-        // 1. Disable seats completely
         handleClickListeners(theater_container, false);
 
-        // 2. Change buttons per assignment requirements
         snacks.setText("Watch Trailer");
         bookSeats.setText("Coming Soon");
 
-        // "Coming Soon" button must be disabled
         bookSeats.setEnabled(false);
         bookSeats.setAlpha(0.5f); // Make it look visually disabled
 
-        // "Watch Trailer" button opens YouTube
         snacks.setOnClickListener(v -> {
             String url = "https://www.youtube.com/results?search_query=" + trailerQuery;
             Intent i = new Intent(Intent.ACTION_VIEW);
