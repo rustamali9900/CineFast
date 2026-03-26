@@ -3,7 +3,7 @@ package com.example.cinefast;
 public class Movie {
     private String title;
     private String details;
-    private int imageResId; 
+    private int imageResId;
     private String trailerQuery;
 
     public Movie(String title, String details, int imageResId, String trailerQuery) {
