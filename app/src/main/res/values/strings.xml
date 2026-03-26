@@ -52,5 +52,6 @@
     <string name='book'>Booking Details</string>
 
     <string name='confirm'>Confirm</string>
+    <string name="title_activity_splash">splash</string>
 
 </resources>
