@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:fillViewport="true"
+    android:backgroundTint="@color/black"
+    tools:context=".SeatSelectionFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:weightSum="10">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:paddingTop="20dp"
+            android:layout_weight="2.25"
+            android:background="@color/seats_info_bg">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:id="@+id/movie_name"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:gravity="center">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/classification"
+                    android:contentDescription="@string/app_name"
+                    android:layout_marginEnd="10dp" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/language"
+                    android:layout_marginEnd="10dp"
+                    android:contentDescription="@string/app_name" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ScreenX"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:gravity="center">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/theatre"
+                    android:contentDescription="@string/app_name" />
+                <TextView
+                    android:layout_marginStart="3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/theater"
+                    android:textColor="@color/movie_info"
+                    android:textSize="13sp"
+                    android:layout_marginEnd="45dp"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/hall_film"
+                    android:contentDescription="@string/app_name" />
+                <TextView
+                    android:layout_marginStart="3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hall"
+                    android:textColor="@color/movie_info"
+                    android:layout_marginEnd="35dp"
+                    android:textSize="13sp"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/calendar"
+                    android:contentDescription="@string/app_name" />
+                <TextView
+                    android:layout_marginStart="3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/clock"
+                    android:textColor="@color/movie_info"
+                    android:layout_marginEnd="35dp"
+                    android:textSize="13sp"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/clock"
+                    android:contentDescription="@string/app_name" />
+                <TextView
+                    android:layout_marginStart="3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/time"
+                    android:textColor="@color/movie_info"
+                    android:layout_marginEnd="18dp"
+                    android:textSize="13sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Stars (90^Mall)"
+                    android:textSize="15sp"
+                    android:textColor="@color/white"
+                    android:layout_marginStart="-15dp"
+                    android:layout_marginEnd="15dp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1st"
+                    android:textSize="15sp"
+                    android:layout_marginEnd="30dp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/movie_date"
+                    android:text=""
+                    android:textSize="15sp"
+                    android:textColor="@color/white"
+                    android:layout_marginEnd="30dp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="22:15"
+                    android:textSize="15sp"
+                    android:textColor="@color/white"
+                    android:layout_marginEnd="5dp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".5"
+            android:src="@drawable/screen"
+            android:contentDescription="@string/app_name"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp" />
+
+        <LinearLayout
+            android:id="@+id/theater_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="6.25"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp">
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="40dp" android:orientation="horizontal" android:weightSum="7" android:layout_marginBottom="8dp">
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_bg" android:tag="available"/>
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_bg" android:tag="available"/>
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_bg" android:tag="available"/>
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" /> <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_bg" android:tag="available"/>
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_bg" android:tag="available"/>
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_bg" android:tag="available"/>
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="40dp" android:orientation="horizontal" android:weightSum="7" android:layout_marginBottom="8dp">
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_occupied_red" android:tag="occupied"/>
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_bg" android:tag="available"/>
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_bg" android:tag="available"/>
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_bg" android:tag="available"/>
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_bg" android:tag="available"/>
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_occupied_red" android:tag="occupied"/>
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="40dp" android:orientation="horizontal" android:weightSum="7" android:layout_marginBottom="8dp">
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_bg" android:tag="available"/>
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_bg" android:tag="available"/>
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_bg" android:tag="available"/>
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_bg" android:tag="available"/>
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_bg" android:tag="available"/>
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_bg" android:tag="available"/>
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="40dp" android:orientation="horizontal" android:weightSum="7" android:layout_marginBottom="8dp">
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_bg" android:tag="available"/>
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_bg" android:tag="available"/>
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_bg" android:tag="available"/>
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+                <View android:id="@+id/seat_start_green_1" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_bg" android:tag="available"/>
+                <View android:id="@+id/seat_start_green_2" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_bg" android:tag="available"/>
+                <View android:id="@+id/seat_start_green_3" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_bg" android:tag="available"/>
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="40dp" android:orientation="horizontal" android:weightSum="7" android:layout_marginBottom="8dp">
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_bg" android:tag="available"/>
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_occupied_red" android:tag="occupied"/>
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_occupied_red" android:tag="occupied"/>
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_bg" android:tag="available"/>
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_bg" android:tag="available"/>
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_bg" android:tag="available"/>
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="40dp" android:orientation="horizontal" android:weightSum="7" android:layout_marginBottom="8dp">
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_occupied_red" android:tag="occupied"/>
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_bg" android:tag="available"/>
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_bg" android:tag="available"/>
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_bg" android:tag="available"/>
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_bg" android:tag="available"/>
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_bg" android:tag="available"/>
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="40dp" android:orientation="horizontal" android:weightSum="7" android:layout_marginBottom="8dp">
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_bg" android:tag="available"/>
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_bg" android:tag="available"/>
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_bg" android:tag="available"/>
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_bg" android:tag="available"/>
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_bg" android:tag="available"/>
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_occupied_red" android:tag="occupied"/>
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="40dp" android:orientation="horizontal" android:weightSum="7" android:layout_marginBottom="8dp">
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_bg" android:tag="available"/>
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_bg" android:tag="available"/>
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_bg" android:tag="available"/>
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_bg" android:tag="available"/>
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_occupied_red" android:tag="occupied"/>
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_occupied_red" android:tag="occupied"/>
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="40dp" android:orientation="horizontal" android:weightSum="7" android:layout_marginBottom="8dp">
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_bg" android:tag="available"/>
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_bg" android:tag="available"/>
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_bg" android:tag="available"/>
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_bg" android:tag="available"/>
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_bg" android:tag="available"/>
+                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/seat_bg" android:tag="available"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/notavailable"
+                android:layout_marginEnd="10dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Not Available"
+                android:textSize="15dp"
+                android:textColor="@color/white"
+                android:layout_marginEnd="15dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/yours"
+                android:layout_marginEnd="10dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yours"
+                android:textSize="15dp"
+                android:layout_marginEnd="15dp"
+                android:textColor="@color/white" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/available"
+                android:layout_marginEnd="10dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Available"
+                android:textSize="15dp"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="0.5"
+            android:layout_marginTop="10dp"
+            android:gravity="center_horizontal">
+            <Button
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:text="Book Seats"
+                android:textColor="@color/white"
+                android:id="@+id/bookSeats"
+                android:textSize="15sp"
+                android:layout_marginEnd="40dp"
+                android:backgroundTint="@color/red"/>
+
+            <Button
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:text="Proceed to Snacks"
+                android:textColor="@color/black"
+                android:id="@+id/snacks"
+                android:textSize="15sp"
+                android:backgroundTint="@color/white"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
