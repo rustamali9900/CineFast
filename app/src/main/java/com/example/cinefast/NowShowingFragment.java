@@ -37,7 +37,21 @@ public class NowShowingFragment extends Fragment {
         MovieAdapter adapter = new MovieAdapter(movieList, new MovieAdapter.OnMovieClickListener() {
             @Override
             public void onBookSeatsClick(Movie movie) {
-                Toast.makeText(getContext(), "Selected: " + movie.getTitle(), Toast.LENGTH_SHORT).show();
+                // Pack the Bundle!
+                Bundle bundle = new Bundle();
+                bundle.putString("movieTitle", movie.getTitle());
+                bundle.putInt("movieImage", movie.getImageResId());
+                bundle.putString("movieTrailer", movie.getTrailerQuery());
+                bundle.putString("category", "Now Showing"); // Crucial for the Seat Screen logic
+
+                SeatSelectionFragment fragment = new SeatSelectionFragment();
+                fragment.setArguments(bundle);
+
+                // Swap the screen
+                requireActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.main_content, fragment)
+                        .addToBackStack(null) // Allows the user to press 'Back'
+                        .commit();
             }
         });
 
