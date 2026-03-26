@@ -35,7 +35,7 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 {
-                    Intent i = new Intent(Home.this, Movies.class);
+                    Intent i = new Intent(Home.this, MainActivity.class);
                     startActivity(i);
                 }
             }
