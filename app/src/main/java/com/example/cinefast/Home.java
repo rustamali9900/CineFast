@@ -41,11 +41,9 @@ public class Home extends AppCompatActivity {
             }
         });
     }
-
     private void init()
     {
         btnGetStarted = findViewById(R.id.btnGetStarted);
     }
-
 
 }
