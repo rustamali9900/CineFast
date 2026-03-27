@@ -79,7 +79,50 @@ public class SeatSelectionFragment extends Fragment {
         snacks.setText("Proceed to Snacks");
         bookSeats.setText("Book Seats");
 
-        snacks.setOnClickListener(v -> navigateData(Snacks.class));
+        snacks.setOnClickListener(v -> {
+            if (selectedSeatCount == 0) {
+                Toast.makeText(requireContext(), "Please select at least one seat", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            StringBuilder rowLettersBuilder = new StringBuilder();
+            StringBuilder seatNumbersBuilder = new StringBuilder();
+            int rowLetterOffset = 0;
+
+            for (int i = 0; i < theater_container.getChildCount(); i++) {
+                View rowView = theater_container.getChildAt(i);
+                if (rowView instanceof LinearLayout) {
+                    LinearLayout row = (LinearLayout) rowView;
+                    char rowLetter = (char) ('A' + rowLetterOffset);
+                    rowLetterOffset++;
+
+                    int seatNum = 1;
+                    for (int j = 0; j < row.getChildCount(); j++) {
+                        View seat = row.getChildAt(j);
+                        if (seat.getTag() != null) {
+                            if (seat.isSelected()) {
+                                rowLettersBuilder.append(rowLetter).append(" ");
+                                seatNumbersBuilder.append(seatNum).append(" ");
+                            }
+                            seatNum++;
+                        }
+                    }
+                }
+            }
+
+            Bundle bundle = getArguments() != null ? new Bundle(getArguments()) : new Bundle();
+            bundle.putString("total", String.valueOf(totalAmount));
+            bundle.putString("selectedRows", rowLettersBuilder.toString().trim());
+            bundle.putString("selectedSeats", seatNumbersBuilder.toString().trim());
+
+            SnacksFragment snacksFragment = new SnacksFragment();
+            snacksFragment.setArguments(bundle);
+
+            requireActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.main_content, snacksFragment)
+                    .addToBackStack(null)
+                    .commit();
+        });
 
         bookSeats.setOnClickListener(v -> {
             if (selectedSeatCount == 0) {
