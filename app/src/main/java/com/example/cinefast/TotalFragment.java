@@ -120,6 +120,9 @@ public class TotalFragment extends Fragment {
 
     private void handleSentTicket() {
         send_Ticket.setOnClickListener(v -> {
+
+            savePermanentlyBookedSeats();
+
             StringBuilder ticketBody = new StringBuilder();
             ticketBody.append("🎬 MOVIE TICKET: ").append(movie).append("\n");
             ticketBody.append("📅 Date: ").append(date).append("\n");
@@ -150,9 +153,31 @@ public class TotalFragment extends Fragment {
             shareIntent.setType("text/plain");
             shareIntent.putExtra(Intent.EXTRA_SUBJECT, "My CineFast Ticket");
             shareIntent.putExtra(Intent.EXTRA_TEXT, ticketBody.toString());
-
             startActivity(Intent.createChooser(shareIntent, "Share Ticket via"));
+
+            requireActivity().getSupportFragmentManager().popBackStack();
+            requireActivity().getSupportFragmentManager().popBackStack();
         });
+    }
+
+    private void savePermanentlyBookedSeats() {
+        SharedPreferences prefs = requireActivity().getSharedPreferences("CineFast_BookedSeats", Context.MODE_PRIVATE);
+        String key = movie + "_" + date + "_seats";
+
+        // Load any previously booked seats from memory
+        java.util.Set<String> alreadyBooked = prefs.getStringSet(key, new java.util.HashSet<>());
+        java.util.Set<String> newlyBooked = new java.util.HashSet<>(alreadyBooked);
+
+        if (selectedRow != null && !selectedRow.trim().isEmpty()) {
+            String[] rows = selectedRow.trim().split("\\s+");
+            String[] seats = selectedSeats.trim().split("\\s+");
+            for (int i = 0; i < rows.length; i++) {
+                newlyBooked.add(rows[i] + seats[i]);
+            }
+        }
+
+        // Save it back to the device
+        prefs.edit().putStringSet(key, newlyBooked).apply();
     }
 
     private void handleSeats() {
