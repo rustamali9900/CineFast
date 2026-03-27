@@ -1,6 +1,5 @@
 package com.example.cinefast;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +10,7 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import java.util.ArrayList;
 
@@ -90,24 +90,34 @@ public class SnacksFragment extends Fragment {
 
         int finalTotal = seatTotalPrice + snackTotal;
 
-        Intent i = new Intent(requireActivity(), Total.class);
-        i.putExtra("movie", movie);
-        i.putExtra("date", date);
-        i.putExtra("image", image);
-        i.putExtra("selectedRows", selectedRows);
-        i.putExtra("selectedSeats", selectedSeats);
-        i.putExtra("total", String.valueOf(finalTotal));
+        // Use a Bundle instead of an Intent to pass data to the next Fragment
+        Bundle bundle = new Bundle();
+        bundle.putString("movie", movie);
+        bundle.putString("date", date);
+        bundle.putString("image", image);
+        bundle.putString("selectedRows", selectedRows);
+        bundle.putString("selectedSeats", selectedSeats);
+        bundle.putString("total", String.valueOf(finalTotal));
 
-        i.putExtra("popcornsQty", String.valueOf(popcornCount));
-        i.putExtra("nachosQty", String.valueOf(nachosCount));
-        i.putExtra("pepsiQty", String.valueOf(pepsiCount));
-        i.putExtra("caramel_popcornQty", String.valueOf(caramelCount));
+        bundle.putString("popcornsQty", String.valueOf(popcornCount));
+        bundle.putString("nachosQty", String.valueOf(nachosCount));
+        bundle.putString("pepsiQty", String.valueOf(pepsiCount));
+        bundle.putString("caramel_popcornQty", String.valueOf(caramelCount));
 
-        i.putExtra("popcorn_price", String.valueOf(popcornPrice));
-        i.putExtra("nachos_price", String.valueOf(nachosPrice));
-        i.putExtra("pepsi_price", String.valueOf(pepsiPrice));
-        i.putExtra("caramel_popcorn_price", String.valueOf(caramelPrice));
+        bundle.putString("popcorn_price", String.valueOf(popcornPrice));
+        bundle.putString("nachos_price", String.valueOf(nachosPrice));
+        bundle.putString("pepsi_price", String.valueOf(pepsiPrice));
+        bundle.putString("caramel_popcorn_price", String.valueOf(caramelPrice));
 
-        startActivity(i);
+        // Create the new Fragment and attach the data
+        TotalFragment totalFragment = new TotalFragment();
+        totalFragment.setArguments(bundle);
+
+        // Transition to the TotalFragment
+        // NOTE: Make sure "R.id.fragment_container" matches the actual ID of the FrameLayout in your MainActivity!
+        requireActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.main_content, totalFragment)
+                .addToBackStack(null)
+                .commit();
     }
 }

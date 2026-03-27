@@ -8,6 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+import java.util.Set;
+
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,13 +22,14 @@ import androidx.fragment.app.Fragment;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashSet;
 import java.util.Locale;
 
 public class SeatSelectionFragment extends Fragment {
 
     LinearLayout theater_container;
     String movieName;
-    String date = "today"; // Defaulting to today since tabs replaced the date toggle
+    String date = "today";
     String category;
     String trailerQuery;
     int imageResId;
@@ -32,9 +38,13 @@ public class SeatSelectionFragment extends Fragment {
     Button snacks, bookSeats;
 
     int TicketPrice = 100;
+
     int totalAmount = 0;
     int selectedSeatCount = 0;
-    int max_seats = 3;
+
+    // NOTE: I removed the max_seats variable here!
+
+    private HashSet<Integer> selectedSeatIndices = new HashSet<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -48,7 +58,6 @@ public class SeatSelectionFragment extends Fragment {
         init(view);
         handleBundle();
 
-        // checks which tab the user came from and changes the screen's behavior
         if (category != null && category.equals("Coming Soon")) {
             setupForComingSoon();
         } else {
@@ -74,7 +83,7 @@ public class SeatSelectionFragment extends Fragment {
     }
 
     private void setupForNowShowing() {
-        handleClickListeners(theater_container, true);
+        setupSeatInteractions(true);
 
         snacks.setText("Proceed to Snacks");
         bookSeats.setText("Book Seats");
@@ -130,18 +139,18 @@ public class SeatSelectionFragment extends Fragment {
                 return;
             }
             Toast.makeText(requireContext(), "Booking Confirmed!", Toast.LENGTH_SHORT).show();
-            navigateData(Total.class);
+            navigateToTotalFragment();
         });
     }
 
     private void setupForComingSoon() {
-        handleClickListeners(theater_container, false);
+        setupSeatInteractions(false);
 
         snacks.setText("Watch Trailer");
         bookSeats.setText("Coming Soon");
 
         bookSeats.setEnabled(false);
-        bookSeats.setAlpha(0.5f); // Make it look visually disabled
+        bookSeats.setAlpha(0.5f);
 
         snacks.setOnClickListener(v -> {
             String url = "https://www.youtube.com/results?search_query=" + trailerQuery;
@@ -151,45 +160,81 @@ public class SeatSelectionFragment extends Fragment {
         });
     }
 
-    private void handleClickListeners(LinearLayout parent, boolean isClickable) {
-        for (int i = 0; i < parent.getChildCount(); i++) {
-            View child = parent.getChildAt(i);
+    private void setupSeatInteractions(boolean isClickable) {
+        SharedPreferences prefs = requireActivity().getSharedPreferences("CineFast_BookedSeats", Context.MODE_PRIVATE);
+        String key = movieName + "_" + date + "_seats";
+        java.util.Set<String> permanentlyBookedSeats = prefs.getStringSet(key, new java.util.HashSet<>());
 
+        int flatIndex = 0;
+        int rowLetterOffset = 0; // Tracks Row A, B, C...
+
+        for (int i = 0; i < theater_container.getChildCount(); i++) {
+            View child = theater_container.getChildAt(i);
             if (child instanceof LinearLayout) {
-                handleClickListeners((LinearLayout) child, isClickable);
-            } else if (child.getTag() != null) {
+                LinearLayout row = (LinearLayout) child;
+                char rowLetter = (char) ('A' + rowLetterOffset);
+                rowLetterOffset++;
 
-                if (!isClickable) {
-                    child.setOnClickListener(null); // Remove click listener
-                    return;
-                }
+                int seatNum = 1; // Tracks Seat 1, 2, 3...
 
-                child.setOnClickListener(v -> {
-                    String tag = v.getTag().toString();
-                    if (tag.equals("occupied")) {
-                        Toast.makeText(requireContext(), "Seat Taken!", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
+                for (int j = 0; j < row.getChildCount(); j++) {
+                    View seat = row.getChildAt(j);
 
-                    if (v.isSelected()) {
-                        v.setSelected(false);
-                        totalAmount -= TicketPrice;
-                        selectedSeatCount--;
-                    } else {
-                        if (selectedSeatCount < max_seats) {
-                            v.setSelected(true);
-                            totalAmount += TicketPrice;
-                            selectedSeatCount++;
-                        } else {
-                            Toast.makeText(requireContext(), "Maximum 3 seats allowed", Toast.LENGTH_SHORT).show();
+                    if (seat.getTag() != null) {
+                        final int currentIndex = flatIndex;
+                        String currentSeatId = String.valueOf(rowLetter) + seatNum; // Generates "A1", "B2", etc.
+
+                        // NEW CHECK: Is this seat in our permanent SharedPreferences memory?
+                        if (permanentlyBookedSeats.contains(currentSeatId)) {
+                            seat.setTag("occupied"); // Mark it permanently occupied
+
+                            // Turn the seat RED using a tint
+                            seat.setBackgroundTintList(android.content.res.ColorStateList.valueOf(android.graphics.Color.RED));
+
+                            // Make sure it doesn't accidentally stay in the temporary "selected" memory
+                            selectedSeatIndices.remove(currentIndex);
                         }
+
+                        // Restore temporary selections if the user just clicked back
+                        if (selectedSeatIndices.contains(currentIndex) && !seat.getTag().toString().equals("occupied")) {
+                            seat.setSelected(true);
+                        } else {
+                            seat.setSelected(false);
+                        }
+
+                        // Handle Click Events
+                        if (!isClickable) {
+                            seat.setOnClickListener(null);
+                        } else {
+                            seat.setOnClickListener(v -> {
+                                String tag = v.getTag().toString();
+                                if (tag.equals("occupied")) {
+                                    Toast.makeText(requireContext(), "This seat is already booked!", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+
+                                if (v.isSelected()) {
+                                    v.setSelected(false);
+                                    totalAmount -= TicketPrice;
+                                    selectedSeatCount--;
+                                    selectedSeatIndices.remove(currentIndex);
+                                } else {
+                                    v.setSelected(true);
+                                    totalAmount += TicketPrice;
+                                    selectedSeatCount++;
+                                    selectedSeatIndices.add(currentIndex);
+                                }
+                            });
+                        }
+                        flatIndex++;
+                        seatNum++; // Move to the next seat number
                     }
-                });
+                }
             }
         }
     }
 
-    private void navigateData(Class<?> targetActivity) {
+    private void navigateToTotalFragment() {
         if (selectedSeatCount == 0) return;
 
         StringBuilder rowLettersBuilder = new StringBuilder();
@@ -217,15 +262,21 @@ public class SeatSelectionFragment extends Fragment {
             }
         }
 
-        Intent intent = new Intent(requireContext(), targetActivity);
-        intent.putExtra("movie", movieName);
-        intent.putExtra("date", date);
-        intent.putExtra("total", String.valueOf(totalAmount));
-        intent.putExtra("selectedRows", rowLettersBuilder.toString().trim());
-        intent.putExtra("selectedSeats", seatNumbersBuilder.toString().trim());
-        intent.putExtra("image", String.valueOf(imageResId));
+        Bundle bundle = getArguments() != null ? new Bundle(getArguments()) : new Bundle();
+        bundle.putString("movie", movieName);
+        bundle.putString("date", date);
+        bundle.putString("total", String.valueOf(totalAmount));
+        bundle.putString("selectedRows", rowLettersBuilder.toString().trim());
+        bundle.putString("selectedSeats", seatNumbersBuilder.toString().trim());
+        bundle.putString("image", String.valueOf(imageResId));
 
-        startActivity(intent);
+        TotalFragment totalFragment = new TotalFragment();
+        totalFragment.setArguments(bundle);
+
+        requireActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.main_content, totalFragment)
+                .addToBackStack(null)
+                .commit();
     }
 
     private void init(View view) {
