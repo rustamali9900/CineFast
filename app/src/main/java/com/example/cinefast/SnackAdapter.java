@@ -45,13 +45,13 @@ public class SnackAdapter extends ArrayAdapter<Snack> {
 
             btnAdd.setOnClickListener(v -> {
                 currentSnack.setQuantity(currentSnack.getQuantity() + 1);
-                notifyDataSetChanged(); // Refreshes the ListView
+                notifyDataSetChanged();
             });
 
             btnRemove.setOnClickListener(v -> {
                 if (currentSnack.getQuantity() > 0) {
                     currentSnack.setQuantity(currentSnack.getQuantity() - 1);
-                    notifyDataSetChanged(); // Refreshes the ListView
+                    notifyDataSetChanged();
                 }
             });
         }

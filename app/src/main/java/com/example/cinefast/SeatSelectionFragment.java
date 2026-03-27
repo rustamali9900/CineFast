@@ -42,7 +42,6 @@ public class SeatSelectionFragment extends Fragment {
     int totalAmount = 0;
     int selectedSeatCount = 0;
 
-    // NOTE: I removed the max_seats variable here!
 
     private HashSet<Integer> selectedSeatIndices = new HashSet<>();
 
@@ -184,18 +183,14 @@ public class SeatSelectionFragment extends Fragment {
                         final int currentIndex = flatIndex;
                         String currentSeatId = String.valueOf(rowLetter) + seatNum; // Generates "A1", "B2", etc.
 
-                        // NEW CHECK: Is this seat in our permanent SharedPreferences memory?
                         if (permanentlyBookedSeats.contains(currentSeatId)) {
                             seat.setTag("occupied"); // Mark it permanently occupied
 
-                            // Turn the seat RED using a tint
                             seat.setBackgroundTintList(android.content.res.ColorStateList.valueOf(android.graphics.Color.RED));
 
-                            // Make sure it doesn't accidentally stay in the temporary "selected" memory
                             selectedSeatIndices.remove(currentIndex);
                         }
 
-                        // Restore temporary selections if the user just clicked back
                         if (selectedSeatIndices.contains(currentIndex) && !seat.getTag().toString().equals("occupied")) {
                             seat.setSelected(true);
                         } else {

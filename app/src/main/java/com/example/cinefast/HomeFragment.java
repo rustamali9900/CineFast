@@ -35,14 +35,12 @@ public class HomeFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
-    // Inflate the 3-dots menu
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.home_menu, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
 
-    // Handle clicks on the menu items
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.action_view_last_booking) {
@@ -52,7 +50,6 @@ public class HomeFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
-    // Retrieve data from SharedPreferences and show the Dialog
     private void showLastBookingDialog() {
         SharedPreferences prefs = requireActivity().getSharedPreferences("CineFastPrefs", Context.MODE_PRIVATE);
         String movie = prefs.getString("last_movie", null);
@@ -77,7 +74,6 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // 1. Setup the Custom 3-Dots Menu
         ImageView menuIcon = view.findViewById(R.id.menu_icon);
         menuIcon.setOnClickListener(v -> {
             PopupMenu popup = new PopupMenu(requireContext(), v);
@@ -93,7 +89,6 @@ public class HomeFragment extends Fragment {
             popup.show();
         });
 
-        // 2. Setup TabLayout and ViewPager
         TabLayout tabLayout = view.findViewById(R.id.tabLayout);
         ViewPager2 viewPager = view.findViewById(R.id.viewPager);
 

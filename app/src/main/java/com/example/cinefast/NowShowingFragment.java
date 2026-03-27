@@ -37,7 +37,6 @@ public class NowShowingFragment extends Fragment {
         MovieAdapter adapter = new MovieAdapter(movieList, new MovieAdapter.OnMovieClickListener() {
             @Override
             public void onBookSeatsClick(Movie movie) {
-                // Pack the Bundle!
                 Bundle bundle = new Bundle();
                 bundle.putString("movieTitle", movie.getTitle());
                 bundle.putInt("movieImage", movie.getImageResId());

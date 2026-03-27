@@ -90,7 +90,6 @@ public class SnacksFragment extends Fragment {
 
         int finalTotal = seatTotalPrice + snackTotal;
 
-        // Use a Bundle instead of an Intent to pass data to the next Fragment
         Bundle bundle = new Bundle();
         bundle.putString("movie", movie);
         bundle.putString("date", date);
@@ -109,12 +108,9 @@ public class SnacksFragment extends Fragment {
         bundle.putString("pepsi_price", String.valueOf(pepsiPrice));
         bundle.putString("caramel_popcorn_price", String.valueOf(caramelPrice));
 
-        // Create the new Fragment and attach the data
         TotalFragment totalFragment = new TotalFragment();
         totalFragment.setArguments(bundle);
 
-        // Transition to the TotalFragment
-        // NOTE: Make sure "R.id.fragment_container" matches the actual ID of the FrameLayout in your MainActivity!
         requireActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.main_content, totalFragment)
                 .addToBackStack(null)
